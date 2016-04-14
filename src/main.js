@@ -3,11 +3,11 @@ import React from 'react'
 import { Provider } from 'react-redux'
 
 import store from './store'
-import Counter from './components/counter'
+import HexGrid from './components/hex-grid'
 
 ReactDOM.render(
   <Provider store={store}>
-    <Counter />
+    <HexGrid />
   </Provider>
 , document.getElementById('content')
 )
