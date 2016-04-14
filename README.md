@@ -4,9 +4,9 @@ Simple structure:
 - store
   - configureStore (add middleware)
 - actions
-  - xActions
-  - yActions
-  - zActions
+  - x-actions
+  - y-actions
+  - z-actions
 - reducers
   - index
   - x
