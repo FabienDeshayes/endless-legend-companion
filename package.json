@@ -9,6 +9,7 @@
     "url": "git://github.com/FabienDeshayes/endless-legend-companion.git"
   },
   "dependencies": {
+    "lodash": "^4.11.1",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
     "react-redux": "^4.4.1",
