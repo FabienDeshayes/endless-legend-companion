@@ -9,22 +9,29 @@ export default class Tile extends React.Component {
 
   render() {
     const { x, y, data } = this.props
+        , points = [
+            [0          , .25 * HEIGHT]
+          , [.5 * WIDTH , 0           ] // top
+          , [WIDTH      , .25 * HEIGHT]
+          , [WIDTH      , .75 * HEIGHT]
+          , [.5 * WIDTH , HEIGHT      ] // bottom
+          , [0          , .75 * HEIGHT]
+          ]
+        , origin = [
+            x * WIDTH  + y % 2 * 1/2 * WIDTH // x coord
+          , y * 3/4 * HEIGHT // y coord
+          ]
 
-    let points = [
-      [0          , .25 * HEIGHT]
-    , [.5 * WIDTH , 0           ]
-    , [WIDTH      , .25 * HEIGHT]
-    , [WIDTH      , .75 * HEIGHT]
-    , [.5 * WIDTH , HEIGHT      ]
-    , [0          , .75 * HEIGHT]
-    ]
-
-    const origin = {
-      x: x * WIDTH  + y % 2 * 1/2 * WIDTH
-    , y: y * 3/4 * HEIGHT
+    function translateToOrigin(coord, idx) {
+      return origin[idx] + coord
     }
 
-    points = _.map(points, function(tuple) { return (origin.x + tuple[0]) + ',' + (origin.y + tuple[1]) }).join(' ')
+    const pointsStr = _
+      .chain(points) // [[x1,y1],[x2,y2]]
+      .map(_.partial(_.map, _, translateToOrigin)) // adds origin x/y, [[x1',y1'],[x2',y2']]
+      .map(_.partial(_.join, _, ',')) // transform coord to string, ["x1,y1","x2,y2"]
+      .join(' ') // add all points, "x1,y1 x2,y2"
+      .value()
 
     const textStyle = {
       fontFamily: 'Consolas',
@@ -35,12 +42,12 @@ export default class Tile extends React.Component {
 
     return (
       <g>
-        <polygon points={ points } fill="rgba(255,0,0,.3)" stroke="black"/>
-        <text x={ origin.x + 1 * WIDTH / 3 } y={ origin.y + 1 * HEIGHT / 3 } style={ textStyle }>{ data.fidsi[0] }</text>
-        <text x={ origin.x + 2 * WIDTH / 3 } y={ origin.y + 1 * HEIGHT / 3 } style={ textStyle }>{ data.fidsi[1] }</text>
-        <text x={ origin.x + 1 * WIDTH / 3 } y={ origin.y + 2 * HEIGHT / 3 } style={ textStyle }>{ data.fidsi[2] }</text>
-        <text x={ origin.x + 2 * WIDTH / 3 } y={ origin.y + 2 * HEIGHT / 3 } style={ textStyle }>{ data.fidsi[3] }</text>
-        <text x={ origin.x + 1 * WIDTH / 2 } y={ origin.y + 4 * HEIGHT / 5 } style={ textStyle }>{ data.fidsi[4] }</text>
+        <polygon points={ pointsStr } fill="rgba(255,0,0,.3)" stroke="black"/>
+        <text x={ origin[0] + 1 * WIDTH / 3 } y={ origin[1] + 1 * HEIGHT / 3 } style={ textStyle }>{ data.fidsi[0] }</text>
+        <text x={ origin[0] + 2 * WIDTH / 3 } y={ origin[1] + 1 * HEIGHT / 3 } style={ textStyle }>{ data.fidsi[1] }</text>
+        <text x={ origin[0] + 1 * WIDTH / 3 } y={ origin[1] + 2 * HEIGHT / 3 } style={ textStyle }>{ data.fidsi[2] }</text>
+        <text x={ origin[0] + 2 * WIDTH / 3 } y={ origin[1] + 2 * HEIGHT / 3 } style={ textStyle }>{ data.fidsi[3] }</text>
+        <text x={ origin[0] + 1 * WIDTH / 2 } y={ origin[1] + 4 * HEIGHT / 5 } style={ textStyle }>{ data.fidsi[4] }</text>
       </g>
     )
   }
