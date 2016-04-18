@@ -5,7 +5,18 @@ const SIZE = 30
     , HEIGHT = 2 * SIZE
     , WIDTH = Math.sqrt(3) / 2 * HEIGHT
 
+function getDefaultState() {
+  return {
+    hover: false
+  }
+}
+
 export default class Tile extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = getDefaultState()
+  }
 
   render() {
     const { x, y, data } = this.props
@@ -39,10 +50,17 @@ export default class Tile extends React.Component {
       fill      : '#ffffff',
       stroke    : '#000000'
     }
+    const polygonStyle = {
+      fill    : this.state.hover ? 'rgba(255,0,0,.5)' : 'rgba(255,0,0,.3)',
+      stroke  : 'black'
+    }
+    const groupStyle = {
+      pointerEvents: 'all'
+    }
 
     return (
-      <g>
-        <polygon points={ pointsStr } fill="rgba(255,0,0,.3)" stroke="black"/>
+      <g style={ groupStyle } onMouseOver={() => this.setState({hover: true})} onMouseOut={() => this.setState({hover: false})}>
+        <polygon class="tile-background" points={ pointsStr } style={ polygonStyle }/>
         <text x={ origin[0] + 1 * WIDTH / 3 } y={ origin[1] + 1 * HEIGHT / 3 } style={ textStyle }>{ data.fidsi[0] }</text>
         <text x={ origin[0] + 2 * WIDTH / 3 } y={ origin[1] + 1 * HEIGHT / 3 } style={ textStyle }>{ data.fidsi[1] }</text>
         <text x={ origin[0] + 1 * WIDTH / 3 } y={ origin[1] + 2 * HEIGHT / 3 } style={ textStyle }>{ data.fidsi[2] }</text>
