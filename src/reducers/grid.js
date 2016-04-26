@@ -1,9 +1,11 @@
-export default function grid(state = 0, action) {
+import _ from 'lodash'
+import * as ActionTypes from '../actions/action-types'
+
+export default function grid(state = [], action) {
   switch (action.type) {
-  case 'INCREMENT':
-    return state + 1
-  case 'DECREMENT':
-    return state - 1
+  case ActionTypes.PRESELECT_TILE:
+    state[action.x][action.y].preselected = true
+    return [... state]
   default:
     return state
   }
