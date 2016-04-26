@@ -10,7 +10,7 @@
     { "fidsi": [1,2,3,4,5], "selected": false, "adjacent": false, "preselected": false, "preadjacent": false }
   , { "fidsi": [1,2,3,4,5], "selected": false, "adjacent": false, "preselected": false, "preadjacent": false }
   , { "fidsi": [1,2,3,4,5], "selected": false, "adjacent": false, "preselected": false, "preadjacent": false }
-  , { "fidsi": [1,2,3,4,5], "selected": false, "adjacent": false, "preselected": false, "preadjacent": false }
+  , null
   , { "fidsi": [1,2,3,4,5], "selected": false, "adjacent": false, "preselected": false, "preadjacent": false }
   ]
 , [

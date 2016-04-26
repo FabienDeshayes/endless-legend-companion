@@ -17,6 +17,7 @@ class HexGrid extends React.Component {
     const tiles = _.flatten(
       _.map(grid, function(row, x) {
         return _.map(row, function(data, y) {
+          if (!data) return null
           return <Tile
             key={ x + ',' + y }
             x={ x }

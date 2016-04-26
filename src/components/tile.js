@@ -22,7 +22,7 @@ export default class Tile extends React.Component {
   render() {
     const { x, y, data, preselect } = this.props
         , origin = [
-            x * WIDTH  + y % 2 * 1/2 * WIDTH // x coord
+            x * WIDTH  + y * 1/2 * WIDTH // x coord
           , y * 3/4 * HEIGHT // y coord
           ]
 
