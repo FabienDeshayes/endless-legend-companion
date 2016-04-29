@@ -11,7 +11,7 @@ const MAP_WIDTH = 800
 class HexGrid extends React.Component {
 
   render() {
-    const { grid, preselectTile } = this.props
+    const { grid, preselectTile, selectTile } = this.props
 
 
     const tiles = _.flatten(
@@ -24,6 +24,7 @@ class HexGrid extends React.Component {
             y={ y }
             data={ data }
             preselect={ () => { preselectTile(x, y) } }
+            select={ () => { selectTile(x, y) } }
           />
         })
       })
@@ -41,6 +42,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     preselectTile: (x, y) => {
       dispatch(actions.preselect(x, y))
+    }
+  , selectTile: (x, y) => {
+      dispatch(actions.select(x, y))
     }
   }
 }

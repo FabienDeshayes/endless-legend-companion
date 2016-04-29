@@ -1,33 +1,61 @@
 import _ from 'lodash'
 import * as ActionTypes from '../actions/action-types'
 
-export default function grid(state = [], action) {
+export default function grid(tiles = [], action) {
   switch (action.type) {
   case ActionTypes.PRESELECT_TILE:
-    resetPreselected(state)
-    setPreselected(state, action.x, action.y)
-    setPreselected(state, action.x, action.y - 1)
-    setPreselected(state, action.x, action.y + 1)
-    setPreselected(state, action.x - 1, action.y)
-    setPreselected(state, action.x + 1, action.y)
-    setPreselected(state, action.x + 1, action.y - 1)
-    setPreselected(state, action.x - 1, action.y + 1)
-    return [...state]
+    setAllTilesProperty(tiles, 'preselected', false)
+    setAllTilesProperty(tiles, 'preadjacent', false)
+    setPreselected(tiles, action.x, action.y)
+    setPreadjacent(tiles, action.x, action.y - 1)
+    setPreadjacent(tiles, action.x, action.y + 1)
+    setPreadjacent(tiles, action.x - 1, action.y)
+    setPreadjacent(tiles, action.x + 1, action.y)
+    setPreadjacent(tiles, action.x + 1, action.y - 1)
+    setPreadjacent(tiles, action.x - 1, action.y + 1)
+    return [...tiles]
+  case ActionTypes.SELECT_TILE:
+    setAllTilesProperty(tiles, 'selected', false)
+    setAllTilesProperty(tiles, 'adjacent', false)
+    setSelected(tiles, action.x, action.y)
+    setAdjacent(tiles, action.x, action.y - 1)
+    setAdjacent(tiles, action.x, action.y + 1)
+    setAdjacent(tiles, action.x - 1, action.y)
+    setAdjacent(tiles, action.x + 1, action.y)
+    setAdjacent(tiles, action.x + 1, action.y - 1)
+    setAdjacent(tiles, action.x - 1, action.y + 1)
+    return [...tiles]
   default:
-    return state
+    return tiles
   }
 }
 
-function resetPreselected(state) {
-  state.forEach(function(row) {
+function setAllTilesProperty(tiles, k, v) {
+  tiles.forEach(function(row) {
     row.forEach(function(tile) {
-      if (tile) tile.preselected = false
+      if (tile) tile[k] = v
     })
   })
 }
 
-function setPreselected(state, x, y) {
-  if (state && state[x] && state[x][y]) {
-    state[x][y].preselected = true
+function setTileProperty(tiles, x, y, k, v) {
+  if (tiles && tiles[x] && tiles[x][y]) {
+    tiles[x][y][k] = v
   }
+}
+
+function setPreselected(tiles, x, y) {
+  setTileProperty(tiles, x, y, 'preselected', true)
+}
+
+function setSelected(tiles, x, y) {
+  setTileProperty(tiles, x, y, 'selected', true)
+}
+
+function setPreadjacent(tiles, x, y) {
+  setTileProperty(tiles, x, y, 'preadjacent', true)
+}
+
+function setAdjacent(tiles, x, y) {
+  setTileProperty(tiles, x, y, 'adjacent', true)
 }

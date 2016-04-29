@@ -20,7 +20,7 @@ export default class Tile extends React.Component {
   }
 
   render() {
-    const { x, y, data, preselect } = this.props
+    const { x, y, data, select, preselect } = this.props
         , origin = [
             x * WIDTH  + y * 1/2 * WIDTH // x coord
           , y * 3/4 * HEIGHT // y coord
@@ -28,6 +28,21 @@ export default class Tile extends React.Component {
 
     function translateToOrigin(coord, idx) {
       return origin[idx] + coord
+    }
+    function getFill() {
+      if (data.selected) {
+        return 'rgba(255,0,0,.9)'
+      }
+      if (data.adjacent) {
+        return 'rgba(255,0,0,.6)'
+      }
+      if (data.preselected) {
+        return 'rgba(255,0,0,.7)'
+      }
+      if (data.preadjacent) {
+        return 'rgba(255,0,0,.4)'
+      }
+      return 'rgba(255,0,0,.2)'
     }
 
     const pointsStr = _
@@ -44,7 +59,7 @@ export default class Tile extends React.Component {
       stroke    : '#000000'
     }
     const polygonStyle = {
-      fill    : data.preselected ? 'rgba(255,0,0,.5)' : 'rgba(255,0,0,.3)',
+      fill    : getFill(),
       stroke  : 'black'
     }
     const groupStyle = {
@@ -52,7 +67,7 @@ export default class Tile extends React.Component {
     }
 
     return (
-      <g style={ groupStyle } onMouseOver={ preselect }>
+      <g style={ groupStyle } onMouseOver={ preselect } onClick={ select }>
         <polygon class="tile-background" points={ pointsStr } style={ polygonStyle }/>
         <text x={ origin[0] + 1 * WIDTH / 3 } y={ origin[1] + 1 * HEIGHT / 3 } style={ textStyle }>{ data.fidsi[0] }</text>
         <text x={ origin[0] + 2 * WIDTH / 3 } y={ origin[1] + 1 * HEIGHT / 3 } style={ textStyle }>{ data.fidsi[1] }</text>
