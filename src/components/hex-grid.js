@@ -25,6 +25,7 @@ class HexGrid extends React.Component {
             data={ data }
             preselect={ () => { preselectTile(x, y) } }
             select={ () => { selectTile(x, y) } }
+            removePreselect={ () => { removePreselectedTile(x, y) } }
           />
         })
       })
