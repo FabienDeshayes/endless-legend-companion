@@ -20,7 +20,7 @@ export default class Tile extends React.Component {
   }
 
   render() {
-    const { x, y, data, select, preselect } = this.props
+    const { x, y, data, select, preselect, removePreselect } = this.props
         , origin = [
             x * WIDTH  + y * 1/2 * WIDTH // x coord
           , y * 3/4 * HEIGHT // y coord
@@ -42,7 +42,7 @@ export default class Tile extends React.Component {
       if (data.preadjacent) {
         return 'rgba(255,0,0,.4)'
       }
-      return 'rgba(255,0,0,.2)'
+      return 'rgba(255,0,0,.1)'
     }
 
     const pointsStr = _
@@ -67,7 +67,7 @@ export default class Tile extends React.Component {
     }
 
     return (
-      <g style={ groupStyle } onMouseOver={ preselect } onClick={ select }>
+      <g style={ groupStyle } onMouseOver={ preselect } onMouseOut={ removePreselect } onClick={ select }>
         <polygon class="tile-background" points={ pointsStr } style={ polygonStyle }/>
         <text x={ origin[0] + 1 * WIDTH / 3 } y={ origin[1] + 1 * HEIGHT / 3 } style={ textStyle }>{ data.fidsi[0] }</text>
         <text x={ origin[0] + 2 * WIDTH / 3 } y={ origin[1] + 1 * HEIGHT / 3 } style={ textStyle }>{ data.fidsi[1] }</text>

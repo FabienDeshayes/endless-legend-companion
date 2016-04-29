@@ -25,6 +25,10 @@ export default function grid(tiles = [], action) {
     setAdjacent(tiles, action.x + 1, action.y - 1)
     setAdjacent(tiles, action.x - 1, action.y + 1)
     return [...tiles]
+  case ActionTypes.REMOVE_PRESELECTED_TILE:
+    setAllTilesProperty(tiles, 'preselected', false)
+    setAllTilesProperty(tiles, 'preadjacent', false)
+    return [...tiles]
   default:
     return tiles
   }

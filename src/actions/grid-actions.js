@@ -15,6 +15,13 @@ const gridActions = {
     , y
     }
   }
+, removePreselectedTile: (x, y) => {
+    return {
+      type: ActionTypes.REMOVE_PRESELECTED_TILE
+    , x
+    , y
+    }
+  }
 }
 
 export default gridActions
