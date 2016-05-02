@@ -46,10 +46,10 @@ export default class Tile extends React.Component {
     }
 
     const pointsStr = _
-      .chain(points) // [[x1,y1],[x2,y2]]
-      .map(_.partial(_.map, _, translateToOrigin)) // adds origin x/y, [[x1',y1'],[x2',y2']]
-      .map(_.partial(_.join, _, ',')) // transform coord to string, ["x1,y1","x2,y2"]
-      .join(' ') // add all points, "x1,y1 x2,y2"
+      .chain(points)                                // [[x1,y1],[x2,y2]]
+      .map(_.partial(_.map, _, translateToOrigin))  // adds origin x/y, [[x1',y1'],[x2',y2']]
+      .map(_.partial(_.join, _, ','))               // transform coord to string, ["x1,y1","x2,y2"]
+      .join(' ')                                    // add all points, "x1,y1 x2,y2"
       .value()
 
     const textStyle = {
