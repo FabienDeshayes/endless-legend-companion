@@ -29,6 +29,7 @@ export default class Tile extends React.Component {
     function translateToOrigin(coord, idx) {
       return origin[idx] + coord
     }
+    
     function getFill() {
       if (data.selected) {
         return 'rgba(255,0,0,.9)'
