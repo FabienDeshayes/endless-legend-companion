@@ -1,0 +1,41 @@
+{
+  "tiles": [
+    [
+      {
+        "fidsi": {
+          "food": 1,
+          "industry": 2,
+          "dust": 3,
+          "science": 4,
+          "influence": 5,
+          "approval": 6,
+        },
+        "selected": true,
+        "preselected": false,
+        "adjacentToSelected": false,
+        "adjacentToPreselected": false
+      }
+    ]
+  ],
+  "selection": {
+    "fidsi": {
+      "food": 1,
+      "industry": 2,
+      "dust": 3,
+      "science": 4,
+      "influence": 5,
+      "approval": 6,
+    }
+  },
+  "preselection": {
+    "fidsi": {
+      "food": 1,
+      "industry": 2,
+      "dust": 3,
+      "science": 4,
+      "influence": 5,
+      "approval": 6,
+    }
+  },
+  "faction": "BROKEN_LORDS"
+}

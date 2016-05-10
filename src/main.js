@@ -4,10 +4,14 @@ import { Provider } from 'react-redux'
 
 import store from './store'
 import HexGrid from './components/hex-grid'
+import FidsiSums from './components/fidsi-sums'
 
 ReactDOM.render(
   <Provider store={store}>
-    <HexGrid />
+    <div>
+      <HexGrid />
+      <FidsiSums />
+    </div>
   </Provider>
 , document.getElementById('content')
 )

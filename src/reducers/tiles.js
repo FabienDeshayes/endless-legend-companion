@@ -1,11 +1,11 @@
 import _ from 'lodash'
 import * as ActionTypes from '../actions/action-types'
 
-export default function grid(tiles = [], action) {
+export default function tiles(tiles = [], action) {
   switch (action.type) {
   case ActionTypes.PRESELECT_TILE:
     setAllTilesProperty(tiles, 'preselected', false)
-    setAllTilesProperty(tiles, 'preadjacent', false)
+    setAllTilesProperty(tiles, 'adjacentToPreselected', false)
     setPreselected(tiles, action.x, action.y)
     setPreadjacent(tiles, action.x, action.y - 1)
     setPreadjacent(tiles, action.x, action.y + 1)
@@ -16,7 +16,7 @@ export default function grid(tiles = [], action) {
     return [...tiles]
   case ActionTypes.SELECT_TILE:
     setAllTilesProperty(tiles, 'selected', false)
-    setAllTilesProperty(tiles, 'adjacent', false)
+    setAllTilesProperty(tiles, 'adjacentToSelected', false)
     setSelected(tiles, action.x, action.y)
     setAdjacent(tiles, action.x, action.y - 1)
     setAdjacent(tiles, action.x, action.y + 1)
@@ -27,7 +27,7 @@ export default function grid(tiles = [], action) {
     return [...tiles]
   case ActionTypes.REMOVE_PRESELECTED_TILE:
     setAllTilesProperty(tiles, 'preselected', false)
-    setAllTilesProperty(tiles, 'preadjacent', false)
+    setAllTilesProperty(tiles, 'adjacentToPreselected', false)
     return [...tiles]
   default:
     return tiles
@@ -57,9 +57,9 @@ function setSelected(tiles, x, y) {
 }
 
 function setPreadjacent(tiles, x, y) {
-  setTileProperty(tiles, x, y, 'preadjacent', true)
+  setTileProperty(tiles, x, y, 'adjacentToPreselected', true)
 }
 
 function setAdjacent(tiles, x, y) {
-  setTileProperty(tiles, x, y, 'adjacent', true)
+  setTileProperty(tiles, x, y, 'adjacentToSelected', true)
 }

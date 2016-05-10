@@ -1,6 +1,6 @@
 import * as ActionTypes from './action-types'
 
-const gridActions = {
+const tilesActions = {
   preselect: (x, y) => {
     return {
       type: ActionTypes.PRESELECT_TILE
@@ -24,4 +24,4 @@ const gridActions = {
   }
 }
 
-export default gridActions
+export default tilesActions

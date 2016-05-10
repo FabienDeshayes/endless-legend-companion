@@ -1,7 +1,9 @@
-import { combineReducers } from 'redux'
+import tiles from './tiles'
+import selection from './selection'
 
-import grid from './grid'
-
-export default combineReducers({
-  grid
-})
+export default function reducer(state = {}, action) {
+  return {
+    tiles: tiles(state.tiles, action)
+  , selection: selection(state.selection, action, state)
+  }
+}

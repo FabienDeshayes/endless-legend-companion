@@ -3,19 +3,13 @@ function getRandomValue() {
 }
 
 function generateTileData(x, y) {
-  let tile = {
-      selected: false
-    , adjacent: false
-    , preselected: false
-    , preadjacent: false
-    , fidsi: []
-    }
+  let tile = { fidsi: [] }
 
-  tile.fidsi.push(getRandomValue())
-  tile.fidsi.push(getRandomValue())
-  tile.fidsi.push(getRandomValue())
-  tile.fidsi.push(getRandomValue())
-  tile.fidsi.push(getRandomValue())
+  tile.fidsi.food = getRandomValue()
+  tile.fidsi.industry = getRandomValue()
+  tile.fidsi.dust = getRandomValue()
+  tile.fidsi.science = getRandomValue()
+  tile.fidsi.influence = getRandomValue()
 
   return tile
 }

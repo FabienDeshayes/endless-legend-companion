@@ -29,18 +29,18 @@ export default class Tile extends React.Component {
     function translateToOrigin(coord, idx) {
       return origin[idx] + coord
     }
-    
+
     function getFill() {
       if (data.selected) {
         return 'rgba(255,0,0,.9)'
       }
-      if (data.adjacent) {
+      if (data.adjacentToSelected) {
         return 'rgba(255,0,0,.6)'
       }
       if (data.preselected) {
         return 'rgba(255,0,0,.7)'
       }
-      if (data.preadjacent) {
+      if (data.adjacentToPreselected) {
         return 'rgba(255,0,0,.4)'
       }
       return 'rgba(255,0,0,.1)'
@@ -70,11 +70,11 @@ export default class Tile extends React.Component {
     return (
       <g style={ groupStyle } onMouseOver={ preselect } onMouseOut={ removePreselect } onClick={ select }>
         <polygon class="tile-background" points={ pointsStr } style={ polygonStyle }/>
-        <text x={ origin[0] + 1 * WIDTH / 3 } y={ origin[1] + 1 * HEIGHT / 3 } style={ textStyle }>{ data.fidsi[0] }</text>
-        <text x={ origin[0] + 2 * WIDTH / 3 } y={ origin[1] + 1 * HEIGHT / 3 } style={ textStyle }>{ data.fidsi[1] }</text>
-        <text x={ origin[0] + 1 * WIDTH / 3 } y={ origin[1] + 2 * HEIGHT / 3 } style={ textStyle }>{ data.fidsi[2] }</text>
-        <text x={ origin[0] + 2 * WIDTH / 3 } y={ origin[1] + 2 * HEIGHT / 3 } style={ textStyle }>{ data.fidsi[3] }</text>
-        <text x={ origin[0] + 1 * WIDTH / 2 } y={ origin[1] + 4 * HEIGHT / 5 } style={ textStyle }>{ data.fidsi[4] }</text>
+        <text x={ origin[0] + 1 * WIDTH / 3 } y={ origin[1] + 1 * HEIGHT / 3 } style={ textStyle }>{ data.fidsi.food }</text>
+        <text x={ origin[0] + 2 * WIDTH / 3 } y={ origin[1] + 1 * HEIGHT / 3 } style={ textStyle }>{ data.fidsi.industry }</text>
+        <text x={ origin[0] + 1 * WIDTH / 3 } y={ origin[1] + 2 * HEIGHT / 3 } style={ textStyle }>{ data.fidsi.dust }</text>
+        <text x={ origin[0] + 2 * WIDTH / 3 } y={ origin[1] + 2 * HEIGHT / 3 } style={ textStyle }>{ data.fidsi.science }</text>
+        <text x={ origin[0] + 1 * WIDTH / 2 } y={ origin[1] + 4 * HEIGHT / 5 } style={ textStyle }>{ data.fidsi.influence }</text>
       </g>
     )
   }
