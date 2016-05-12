@@ -4,22 +4,34 @@ import { connect } from 'react-redux'
 class FidsiSums extends React.Component {
 
   render() {
-    const { selection } = this.props
+    const { selection, preselection } = this.props
+
+    function renderFidsi(fidsi) {
+      return (
+        <div>
+          <span>Food: { fidsi.food }</span>
+          <span> - Industry: { fidsi.industry }</span>
+          <span> - Dust: { fidsi.dust }</span>
+          <span> - Science: { fidsi.science }</span>
+          <span> - Influence: { fidsi.influence }</span>
+        </div>
+      )
+    }
 
     return (
       <div>
-        <span>Food: { selection ? selection.fidsi.food : 0 }</span>
-        <span> - Industry: { selection ? selection.fidsi.industry : 0 }</span>
-        <span> - Dust: { selection ? selection.fidsi.dust : 0 }</span>
-        <span> - Science: { selection ? selection.fidsi.science : 0 }</span>
-        <span> - Influence: { selection ? selection.fidsi.influence : 0 }</span>
+        { preselection && preselection.fidsi ? renderFidsi(preselection.fidsi) : '' }
+        { selection && selection.fidsi ? renderFidsi(selection.fidsi) : '' }
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => {
-  return { selection: state.selection }
+  return {
+    selection: state.selection
+  , preselection: state.preselection
+  }
 }
 
 export default connect(mapStateToProps)(FidsiSums)

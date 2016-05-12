@@ -3,19 +3,18 @@ import { connect } from 'react-redux'
 import _ from 'lodash'
 
 import Tile from './tile'
-import actions from '../actions/grid-actions'
+import actions from '../actions/tiles-actions'
 
-const MAP_WIDTH = 800
-    , MAP_HEIGHT = 600
+const MAP_WIDTH = 600
+    , MAP_HEIGHT = 400
 
 class HexGrid extends React.Component {
 
   render() {
-    const { grid, preselectTile, selectTile, removePreselectedTile } = this.props
+    const { tiles, preselectTile, selectTile, removePreselectedTile } = this.props
 
-
-    const tiles = _.flatten(
-      _.map(grid, function(row, x) {
+    const flatTiles = _.flatten(
+      _.map(tiles, function(row, x) {
         return _.map(row, function(data, y) {
           if (!data) return null
           return <Tile
@@ -33,7 +32,7 @@ class HexGrid extends React.Component {
 
     return (
       <svg width={ MAP_WIDTH } height={ MAP_HEIGHT }>
-      { tiles }
+      { flatTiles }
       </svg>
     )
   }
@@ -54,7 +53,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (state) => {
-  return { grid: state.grid }
+  return { tiles: state.tiles }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HexGrid)
