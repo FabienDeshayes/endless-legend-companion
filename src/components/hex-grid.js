@@ -4,9 +4,7 @@ import _ from 'lodash'
 
 import Tile from './tile'
 import actions from '../actions/tiles-actions'
-
-const MAP_WIDTH = 600
-    , MAP_HEIGHT = 400
+import config from '../config/config.json'
 
 class HexGrid extends React.Component {
 
@@ -31,7 +29,7 @@ class HexGrid extends React.Component {
     )
 
     return (
-      <svg width={ MAP_WIDTH } height={ MAP_HEIGHT }>
+      <svg width={ config.map.width } height={ config.map.height }>
       { flatTiles }
       </svg>
     )

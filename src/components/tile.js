@@ -1,7 +1,9 @@
 import React from 'react'
 import _ from 'lodash'
 
-const SIZE = 30
+import config from '../config/config.json'
+
+const SIZE = config.tiles.tileSize
     , HEIGHT = 2 * SIZE
     , WIDTH = Math.sqrt(3) / 2 * HEIGHT
     , points = [
