@@ -68,7 +68,7 @@ export default class Tile extends React.Component {
     }
 
     return (
-      <g style={ groupStyle } onMouseOver={ preselect } onMouseOut={ removePreselect } onClick={ select }>
+      <g style={ groupStyle } onMouseOver={ preselect } onMouseOut={ removePreselect } onClick={ select } x= { x } y={ y }>
         <polygon class="tile-background" points={ pointsStr } style={ polygonStyle }/>
         <text x={ origin[0] + 1 * WIDTH / 3 } y={ origin[1] + 1 * HEIGHT / 3 } style={ textStyle }>{ data.fidsi.food }</text>
         <text x={ origin[0] + 2 * WIDTH / 3 } y={ origin[1] + 1 * HEIGHT / 3 } style={ textStyle }>{ data.fidsi.industry }</text>
