@@ -6,11 +6,11 @@ export default function selection(selection = {}, action, state) {
   case ActionTypes.SELECT_TILE:
     return _.extend({}, selection, {
       fidsi: {
-        food: sumFidsi(state, action.x, action.y, 'food')
-      , industry: sumFidsi(state, action.x, action.y, 'industry')
-      , dust: sumFidsi(state, action.x, action.y, 'dust')
-      , science: sumFidsi(state, action.x, action.y, 'science')
-      , influence: sumFidsi(state, action.x, action.y, 'influence')
+        food: sumFidsi(state, action.q, action.r, 'food')
+      , industry: sumFidsi(state, action.q, action.r, 'industry')
+      , dust: sumFidsi(state, action.q, action.r, 'dust')
+      , science: sumFidsi(state, action.q, action.r, 'science')
+      , influence: sumFidsi(state, action.q, action.r, 'influence')
       }
     })
   default:
@@ -18,17 +18,17 @@ export default function selection(selection = {}, action, state) {
   }
 }
 
-function sumFidsi(state, x, y, field) {
+function sumFidsi(state, q , r, field) {
   let sum = 0
   const tiles = state.tiles
 
-  if (tiles && tiles[x] && tiles[x][y]) sum += tiles[x][y].fidsi[field]
-  if (tiles && tiles[x - 1] && tiles[x - 1][y]) sum += tiles[x - 1][y].fidsi[field]
-  if (tiles && tiles[x + 1] && tiles[x + 1][y]) sum += tiles[x + 1][y].fidsi[field]
-  if (tiles && tiles[x] && tiles[x][y - 1]) sum += tiles[x][y - 1].fidsi[field]
-  if (tiles && tiles[x] && tiles[x][y + 1]) sum += tiles[x][y + 1].fidsi[field]
-  if (tiles && tiles[x + 1] && tiles[x + 1][y - 1]) sum += tiles[x + 1][y - 1].fidsi[field]
-  if (tiles && tiles[x - 1] && tiles[x - 1][y + 1]) sum += tiles[x - 1][y + 1].fidsi[field]
+  if (tiles && tiles[q] && tiles[q][r]) sum += tiles[q][r].fidsi[field]
+  if (tiles && tiles[q - 1] && tiles[q - 1][r]) sum += tiles[q - 1][r].fidsi[field]
+  if (tiles && tiles[q + 1] && tiles[q + 1][r]) sum += tiles[q + 1][r].fidsi[field]
+  if (tiles && tiles[q] && tiles[q][r - 1]) sum += tiles[q][r - 1].fidsi[field]
+  if (tiles && tiles[q] && tiles[q][r + 1]) sum += tiles[q][r + 1].fidsi[field]
+  if (tiles && tiles[q + 1] && tiles[q + 1][r - 1]) sum += tiles[q + 1][r - 1].fidsi[field]
+  if (tiles && tiles[q - 1] && tiles[q - 1][r + 1]) sum += tiles[q - 1][r + 1].fidsi[field]
 
   return sum
 }

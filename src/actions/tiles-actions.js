@@ -1,25 +1,25 @@
 import * as ActionTypes from './action-types'
 
 const tilesActions = {
-  preselect: (x, y) => {
+  preselect: (q, r) => {
     return {
       type: ActionTypes.PRESELECT_TILE
-    , x
-    , y
+    , q
+    , r
     }
   }
-, select: (x, y) => {
+, select: (q, r) => {
     return {
       type: ActionTypes.SELECT_TILE
-    , x
-    , y
+    , q
+    , r
     }
   }
-, removePreselectedTile: (x, y) => {
+, removePreselectedTile: (q, r) => {
     return {
       type: ActionTypes.REMOVE_PRESELECTED_TILE
-    , x
-    , y
+    , q
+    , r
     }
   }
 }

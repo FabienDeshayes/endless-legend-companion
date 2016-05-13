@@ -12,17 +12,17 @@ class HexGrid extends React.Component {
     const { tiles, preselectTile, selectTile, removePreselectedTile } = this.props
 
     const flatTiles = _.flatten(
-      _.map(tiles, function(row, x) {
-        return _.map(row, function(data, y) {
+      _.map(tiles, function(row) {
+        return _.map(row, function(data) {
           if (!data) return null
           return <Tile
-            key={ x + ',' + y }
-            x={ x }
-            y={ y }
+            key={ data.q + ',' + data.r }
+            q={ data.q }
+            r={ data.r }
             data={ data }
-            preselect={ () => { preselectTile(x, y) } }
-            select={ () => { selectTile(x, y) } }
-            removePreselect={ () => { removePreselectedTile(x, y) } }
+            preselect={ () => { preselectTile(data.q, data.r) } }
+            select={ () => { selectTile(data.q, data.r) } }
+            removePreselect={ () => { removePreselectedTile(data.q, data.r) } }
           />
         })
       })
@@ -38,14 +38,14 @@ class HexGrid extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    preselectTile: (x, y) => {
-      dispatch(actions.preselect(x, y))
+    preselectTile: (q, r) => {
+      dispatch(actions.preselect(q, r))
     }
-  , selectTile: (x, y) => {
-      dispatch(actions.select(x, y))
+  , selectTile: (q, r) => {
+      dispatch(actions.select(q, r))
     }
-  , removePreselectedTile: (x, y) => {
-      dispatch(actions.removePreselectedTile(x, y))
+  , removePreselectedTile: (q, r) => {
+      dispatch(actions.removePreselectedTile(q, r))
     }
   }
 }

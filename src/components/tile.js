@@ -22,10 +22,10 @@ export default class Tile extends React.Component {
   }
 
   render() {
-    const { x, y, data, select, preselect, removePreselect } = this.props
+    const { q, r, data, select, preselect, removePreselect } = this.props
         , origin = [
-            x * WIDTH  + y * 1/2 * WIDTH // x coord
-          , y * 3/4 * HEIGHT // y coord
+            config.map.padding + q * WIDTH  + r * 1/2 * WIDTH // x coord
+          , config.map.padding + r * 3/4 * HEIGHT // y coord
           ]
 
     function translateToOrigin(coord, idx) {
@@ -49,10 +49,10 @@ export default class Tile extends React.Component {
     }
 
     const pointsStr = _
-      .chain(points)                                // [[x1,y1],[x2,y2]]
-      .map(_.partial(_.map, _, translateToOrigin))  // adds origin x/y, [[x1',y1'],[x2',y2']]
-      .map(_.partial(_.join, _, ','))               // transform coord to string, ["x1,y1","x2,y2"]
-      .join(' ')                                    // add all points, "x1,y1 x2,y2"
+      .chain(points)                                // [[q1,r1],[q2,r2]]
+      .map(_.partial(_.map, _, translateToOrigin))  // adds origin q/r, [[q1',r1'],[q2',r2']]
+      .map(_.partial(_.join, _, ','))               // transform coord to string, ["q1,r1","q2,r2"]
+      .join(' ')                                    // add all points, "q1,r1 q2,r2"
       .value()
 
     const textStyle = {
@@ -70,7 +70,7 @@ export default class Tile extends React.Component {
     }
 
     return (
-      <g style={ groupStyle } onMouseOver={ preselect } onMouseOut={ removePreselect } onClick={ select } x= { x } y={ y }>
+      <g style={ groupStyle } onMouseOver={ preselect } onMouseOut={ removePreselect } onClick={ select } q={ q } r={ r }>
         <polygon class="tile-background" points={ pointsStr } style={ polygonStyle }/>
         <text x={ origin[0] + 1 * WIDTH / 3 } y={ origin[1] + 1 * HEIGHT / 3 } style={ textStyle }>{ data.fidsi.food }</text>
         <text x={ origin[0] + 2 * WIDTH / 3 } y={ origin[1] + 1 * HEIGHT / 3 } style={ textStyle }>{ data.fidsi.industry }</text>

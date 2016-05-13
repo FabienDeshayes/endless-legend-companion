@@ -1,11 +1,12 @@
 {
   "tiles": {
-    "columns": 8,
-    "rows": 5,
+    "columns": 10,
+    "rows": 8,
     "tileSize": 30
   },
   "map": {
     "width": 600,
-    "height": 400
+    "height": 400,
+    "padding": 10
   }
 }
